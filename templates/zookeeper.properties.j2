@@ -13,6 +13,6 @@ admin.enableServer=false
 
 {% if groups['kafka_hosts'] is defined %}
 {% for server_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
-server.{{ loop.index + 1 }}={{ server_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
+server.{{ loop.index }}={{ server_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
 {% endfor %}
 {% endif %}
