@@ -10,4 +10,4 @@
   systemd:
     name: zookeeper
     state: restarted
-  when: zookeeper_service_state != 'stopped'
+  when: kafka_zookeeper_service_state != 'stopped'
