@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Restart=on-failure
+Environment="JAVA_HOME={{ kafka_java_home }}"
 ExecStart={{ kafka_install_path }}/bin/zookeeper-server-start.sh {{ kafka_conf_path }}/zookeeper.properties
 ExecStop={{ kafka_install_path }}/bin/zookeeper-server-stop.sh
 User={{ kafka_user }}

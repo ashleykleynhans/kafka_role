@@ -19,7 +19,7 @@
   lineinfile:
     path: /etc/profile
     regexp: '^export JAVA_HOME='
-    line: 'export JAVA_HOME=/opt/java/current'
+    line: 'export JAVA_HOME={{ kafka_java_home }}'
 
 - name: KAFKA | ZOOKEEPER | Set PATH
   lineinfile:

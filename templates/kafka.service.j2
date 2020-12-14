@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 Restart=on-failure
+Environment="JAVA_HOME={{ kafka_java_home }}"
 Environment=KAFKA_LOG4J_OPTS=-Dlog4j.configuration=file:{{ kafka_conf_path }}/log4j.properties
 Environment="KAFKA_HEAP_OPTS=-Xmx{{ kafka_xmx }} -Xms{{ kafka_xms }}"
 Environment=JMX_PORT={{ kafka_jmx_port }}

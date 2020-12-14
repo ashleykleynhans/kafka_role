@@ -140,6 +140,7 @@ kafka_service_template_path: kafka.service.j2
 kafka_zookeeper_server_template_path: zookeeper.properties.j2
 kafka_zookeeper_myid_template_path: myid.j2
 kafka_zookeeper_service_template_path: zookeeper.service.j2
+kafka_java_home: /opt/java/current
 
 ## Extra properties
 kafka_topics_config: []
