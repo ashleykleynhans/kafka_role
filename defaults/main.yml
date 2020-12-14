@@ -63,7 +63,9 @@ kafka_not_removable_topics: ['KSTREAM-AGGREGATE-STATE-STORE']  # Contains filter
 # listeners: PLAINTEXT://{{kafka_host}}:{{kafka_port}}
 kafka_host_name: "{{ ansible_nodename }}"
 kafka_port: 9092
-kafka_zookeeper_port: 2181
+kafka_zookeeper_peer_port: 2888
+kafka_zookeeper_leader_port: 3888
+kafka_zookeeper_client_port: 2181
 
 # Hostname and port the broker will advertise to producers and consumers. If not set,
 # it uses the value for "listeners" if configured.  Otherwise, it will use the value

@@ -2,7 +2,7 @@
 
 - name: KAFKA | ZOOKEEPER | Create data path
   file:
-    path: "{{ kafka_data_path }}"
+    path: "{{ kafka_zookeeper_data_path }}"
     mode: 0760
     state: directory
     owner: "{{ kafka_user }}"
