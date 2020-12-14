@@ -14,3 +14,15 @@
     dest: /lib/systemd/system/zookeeper.service
     mode: 0644
   notify: restart zookeeper
+
+- name: KAFKA | ZOOKEEPER | Set JAVA_HOME
+  lineinfile:
+    path: /etc/profile
+    regexp: '^export JAVA_HOME='
+    line: 'export JAVA_HOME=/opt/java/current'
+
+- name: KAFKA | ZOOKEEPER | Set PATH
+  lineinfile:
+    path: /etc/profile
+    regexp: '^export PATH='
+    line: 'export PATH=$JAVA_HOME/bin:$PATH'
