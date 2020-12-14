@@ -3,15 +3,12 @@
 
 ############################# Server Basics #############################
 
-{% set server_id = 1 %}
-
 # The id of the broker. This must be set to a unique integer for each broker.
 {% if groups['kafka_hosts'] is defined %}
 {% for server_ip in groups['k8s_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
 {% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == server_ip %}
-broker.id={{ server_id }}
+broker.id={{ loop.index + 1 }}
 {% endif %}
-{% set server_id = server_id + 1 %}
 {% endfor %}
 {% else %}
 broker.id=0

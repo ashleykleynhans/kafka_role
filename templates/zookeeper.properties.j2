@@ -11,11 +11,8 @@ maxClientCnxns=0
 admin.enableServer=false
 # admin.serverPort=8080
 
-{% set server_id = 1 %}
-
 {% if groups['kafka_hosts'] is defined %}
-{% for server_ip in groups['k8s_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
-server.{{ server_id }}={{ server_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
-{% set server_id = server_id + 1 %}
+{% for server_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
+server.{{ loop.index + 1 }}={{ server_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
 {% endfor %}
 {% endif %}
