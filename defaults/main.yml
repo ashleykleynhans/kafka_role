@@ -138,6 +138,7 @@ kafka_log4j_template_path: log4j.properties.j2
 kafka_server_template_path: server.properties.j2
 kafka_service_template_path: kafka.service.j2
 kafka_zookeeper_server_template_path: zookeeper.properties.j2
+kafka_zookeeper_myid_template_path: myid.j2
 kafka_zookeeper_service_template_path: zookeeper.service.j2
 
 ## Extra properties

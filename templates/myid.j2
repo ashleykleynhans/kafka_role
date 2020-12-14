@@ -1,0 +1,9 @@
+{% if groups['kafka_hosts'] is defined %}
+{% for server_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == server_ip %}
+{{ loop.index }}
+{% endif %}
+{% endfor %}
+{% else %}
+1
+{% endif %}
