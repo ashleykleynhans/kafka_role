@@ -1,0 +1,16 @@
+---
+
+- name: KAFKA | ZOOKEEPER | Create data path
+  file:
+    path: "{{ kafka_data_path }}"
+    mode: 0760
+    state: directory
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_user }}"
+
+- name: KAFKA | ZOOKEEPER | Copy Daemon script
+  template:
+    src: "{{ kafka_zookeeper_service_template_path }}"
+    dest: /lib/systemd/system/zookeeper.service
+    mode: 0644
+  notify: restart zookeeper

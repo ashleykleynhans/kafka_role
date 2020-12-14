@@ -15,10 +15,16 @@ kafka_service_enabled: true
 # current state: started, stopped
 kafka_service_state: started
 
+# start on boot
+kafka_zookeeper_service_enabled: true
+# current state: started, stopped
+kafka_zookeeper_service_state: started
+
 # Files & Paths
 kafka_install_path: /opt/kafka
 kafka_conf_path: /etc/kafka
 kafka_data_path: "{{ kafka_install_path }}/data"
+kafka_zookeeper_data_path: "{{ kafka_install_path }}/zookeeper/data"
 kafka_log_path: /var/log/kafka
 
 # Logging
@@ -57,6 +63,7 @@ kafka_not_removable_topics: ['KSTREAM-AGGREGATE-STATE-STORE']  # Contains filter
 # listeners: PLAINTEXT://{{kafka_host}}:{{kafka_port}}
 kafka_host_name: "{{ ansible_nodename }}"
 kafka_port: 9092
+kafka_zookeeper_port: 2181
 
 # Hostname and port the broker will advertise to producers and consumers. If not set,
 # it uses the value for "listeners" if configured.  Otherwise, it will use the value
@@ -126,6 +133,8 @@ kafka_force_reinstall: false
 kafka_log4j_template_path: log4j.properties.j2
 kafka_server_template_path: server.properties.j2
 kafka_service_template_path: kafka.service.j2
+kafka_zookeeper_server_template_path: zookeeper.properties.j2
+kafka_zookeeper_service_template_path: zookeeper.service.j2
 
 ## Extra properties
 kafka_topics_config: []

@@ -1,22 +1,38 @@
 ---
 
 - name: KAFKA | Install
-  import_tasks: install.yml
+  import_tasks: kafka_install.yml
   tags:
     - kafka_install
 
+- name: KAFKA | ZOOKEEPER | Install
+  import_tasks: zookeeper_install.yml
+  tags:
+    - zookeeper_install
+
 - name: KAFKA | Configure
-  import_tasks: config.yml
+  import_tasks: kafka_config.yml
   tags:
     - kafka_configure
 
+- name: KAFKA | ZOOKEEPER | Configure
+  import_tasks: zookeeper_config.yml
+  tags:
+    - zookeeper_configure
+
+# Zookeeper must be started before Kafka
+- name: KAFKA | ZOOKEEPER | Service
+  import_tasks: zookeeper_service.yml
+  tags:
+    - zookeeper_service
+
 - name: KAFKA | Service
-  import_tasks: service.yml
+  import_tasks: kafka_service.yml
   tags:
     - kafka_service
 
 - name: KAFKA | Topics
-  import_tasks: topics.yml
+  import_tasks: kafka_topics.yml
   run_once: true
   tags:
     - kafka_topics

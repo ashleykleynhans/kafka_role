@@ -1,0 +1,10 @@
+---
+
+- name: KAFKA | ZOOKEEPER | Copy server config
+  template:
+    src: "{{ kafka_zookeeper_server_template_path }}"
+    dest: "{{ kafka_conf_path }}/zookeeper.properties"
+    mode: "0640"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+  notify: restart zookeeper

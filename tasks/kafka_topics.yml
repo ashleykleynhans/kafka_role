@@ -95,6 +95,6 @@
   when: kafka_delete_topic_enable == 'true'
 
 - name: KAFKA | Configure kafka topics
-  include_tasks: topic_config.yml
+  include_tasks: kafka_topic_config.yml
   with_items:
     - "{{ kafka_topics_config }}"
