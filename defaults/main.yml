@@ -66,6 +66,7 @@ kafka_port: 9092
 kafka_zookeeper_peer_port: 2888
 kafka_zookeeper_leader_port: 3888
 kafka_zookeeper_client_port: 2181
+kafka_zookeeper_admin_port: 8080
 
 # Hostname and port the broker will advertise to producers and consumers. If not set,
 # it uses the value for "listeners" if configured.  Otherwise, it will use the value
@@ -116,6 +117,7 @@ kafka_zookeeper_hosts:
   - localhost:2181
 # Timeout in ms for connecting to zookeeper
 kafka_zookeeper_connection_timeout_ms: 6000
+kafka_zookeeper_max_connections: 0
 
 # The replication factor for the offsets topic (set higher to ensure availability).
 # Internal topic creation will fail until the cluster size meets this replication factor requirement.
