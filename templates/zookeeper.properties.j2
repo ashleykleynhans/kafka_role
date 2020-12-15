@@ -15,8 +15,12 @@ maxClientCnxns={{ kafka_zookeeper_max_connections }}
 admin.enableServer=false
 # admin.serverPort={{ kafka_zookeeper_admin_port }}
 
-{% if groups['kafka_hosts'] is defined %}
-{% for server_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
-server.{{ loop.index }}={{ server_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
+{% if kafka_brokers is defined %}
+{% for broker_ip in kafka_brokers %}
+server.{{ loop.index }}={{ broker_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }
+{% endfor %}
+{% elif groups['kafka_hosts'] is defined %}
+{% for kafka_host_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
+server.{{ loop.index }}={{ kafka_host_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
 {% endfor %}
 {% endif %}
