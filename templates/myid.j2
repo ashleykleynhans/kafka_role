@@ -1,6 +1,12 @@
-{% if groups['kafka_hosts'] is defined %}
-{% for server_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
-{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == server_ip %}
+{% if kafka_brokers is defined %}
+{% for broker_ip in kafka_brokers %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == broker_ip %}
+{{ loop.index }}
+{% endif %}
+{% endfor %}
+{% elif groups['kafka_hosts'] is defined %}
+{% for kafka_host_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
+{% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == kafka_host_ip %}
 {{ loop.index }}
 {% endif %}
 {% endfor %}
