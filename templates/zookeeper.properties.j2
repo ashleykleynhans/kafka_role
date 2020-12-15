@@ -17,7 +17,7 @@ admin.enableServer=false
 
 {% if kafka_brokers is defined %}
 {% for broker_ip in kafka_brokers %}
-server.{{ loop.index }}={{ broker_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }
+server.{{ loop.index }}={{ broker_ip }}:{{ kafka_zookeeper_peer_port }}:{{ kafka_zookeeper_leader_port }}
 {% endfor %}
 {% elif groups['kafka_hosts'] is defined %}
 {% for kafka_host_ip in groups['kafka_hosts'] | map('extract', hostvars, ['ansible_all_ipv4_addresses']) | flatten %}
