@@ -1,0 +1,26 @@
+---
+
+- name: KAFKA | JMX MONITORING | Create /etc/kafka/jmx_exporter_config.yml
+  copy:
+    src: jmx_exporter_config.yml
+    dest: /etc/kafka/jmx_exporter_config.yml
+    mode: "0640"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+
+- name: KAFKA | JMX MONITORING | Ensure /opt/monitoring exists
+  file:
+    path: /opt/monitoring
+    state: directory
+    mode: "0755"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"
+
+- name: KAFKA | JMX MONITORING | Fetch and install /opt/monitoring/jmx_prometheus_javaagent.jar
+  get_url:
+    url: "https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/{{ jmx_exporter_version }}/jmx_prometheus_javaagent-{{ jmx_exporter_version }}.jar"
+    dest: /opt/monitoring/jmx_prometheus_javaagent.jar
+    checksum: "{{ jmx_exporter_checksum }}"
+    mode: "0640"
+    owner: "{{ kafka_user }}"
+    group: "{{ kafka_group }}"

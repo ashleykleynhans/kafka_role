@@ -34,8 +34,9 @@ kafka_gc_log_enabled: false
 # JVM
 kafka_xmx: "{{ (ansible_memtotal_mb / 2) | int }}m"
 kafka_xms: "{{ (ansible_memtotal_mb / 2) | int }}m"
-kafka_jmx_port: 9010
-kafka_opts: ""
+kafka_jmx_port: 9110
+# Prometheus JMX Exporter listens at port 9010
+kafka_opts: "-javaagent:/opt/monitoring/jmx_prometheus_javaagent.jar=9010:/etc/kafka/jmx_exporter_config.yml"
 kafka_jvm_performance_opts: ""
 
 # Service properties
