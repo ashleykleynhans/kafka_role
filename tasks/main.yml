@@ -1,5 +1,10 @@
 ---
 
+- name: KAFKA | Monitoring
+  import_tasks: kafka_monitoring.yml
+  tags:
+    - kafka_monitoring
+
 - name: KAFKA | Install
   import_tasks: kafka_install.yml
   tags:
@@ -30,11 +35,6 @@
   import_tasks: kafka_service.yml
   tags:
     - kafka_service
-
-- name: KAFKA | Monitoring
-  import_tasks: kafka_monitoring.yml
-  tags:
-    - kafka_monitoring
 
 - name: KAFKA | Topics
   import_tasks: kafka_topics.yml
