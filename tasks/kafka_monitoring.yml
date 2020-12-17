@@ -7,6 +7,7 @@
     mode: "0640"
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
+  notify: restart kafka
 
 - name: KAFKA | JMX MONITORING | Ensure /opt/monitoring exists
   file:
@@ -24,3 +25,4 @@
     mode: "0640"
     owner: "{{ kafka_user }}"
     group: "{{ kafka_group }}"
+  notify: restart kafka
