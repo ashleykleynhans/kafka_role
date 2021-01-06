@@ -42,3 +42,17 @@
     regexp: ^EXTRA_ARGS=\${EXTRA_ARGS-'-name kafkaServer -loggc'}
     replace: EXTRA_ARGS=${EXTRA_ARGS-'-name kafkaServer'}
   when: not kafka_gc_log_enabled
+
+# Previously, the recommendation for vm.swappiness was always to
+# set it to 0. This value used to have the meaning “do not swap unless
+# there is an out-of-memory condition.” However, the meaning of
+# this value changed as of Linux kernel version 3.5-rc1, and that
+# change was backported into many distributions, including Red Hat
+# Enterprise Linux kernels as of version 2.6.32-303. This changed the
+# meaning of the value 0 to “never swap under any circumstances.” It
+# is for this reason that a value of 1 is now recommended.
+- name: KAFKA | Set vm.swappiness to 1
+  sysctl:
+    name: vm.swappiness
+    value: 1
+    state: present
