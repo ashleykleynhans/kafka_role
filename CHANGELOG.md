@@ -1,5 +1,6 @@
 ## 2021-01-08
 
+- Added support for kafka_zookeeper_chroot.
 - Added performance tuning.
 
 ## 2021-01-06

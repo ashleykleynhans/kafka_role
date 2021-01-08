@@ -106,6 +106,8 @@ kafka_log_retention_check_interval_ms: 300000
 # root directory for all kafka znodes.
 kafka_zookeeper_hosts:
   - localhost:2181
+# The Zookeeper chroot to keep Zookeper nice and clean and nicely structured
+kafka_zookeeper_chroot: kafka
 # Timeout in ms for connecting to zookeeper
 kafka_zookeeper_connection_timeout_ms: 6000
 
