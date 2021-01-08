@@ -5,3 +5,7 @@
     name: kafka
     state: restarted
   when: kafka_service_state != 'stopped'
+
+- name: reboot system
+  reboot:
+    reboot_timeout: 600

@@ -56,3 +56,18 @@
     name: vm.swappiness
     value: 1
     state: present
+  notify: reboot system
+
+- name: KAFKA | Increase maximum number of hard open files to 100K
+  lineinfile:
+    path: /etc/security/limits.conf
+    regexp: '^\* hard nofile'
+    line: '* hard nofile 100000'
+  notify: reboot system
+
+- name: KAFKA | Increase maximum number of soft open files to 100K
+  lineinfile:
+    path: /etc/security/limits.conf
+    regexp: '^\* soft nofile'
+    line: '* soft nofile 100000'
+  notify: reboot system
