@@ -1,3 +1,8 @@
+## 2021-02-05
+
+- Switched mirror to Internet Solutions.
+- Bumped Kafka to version 2.7.0.
+
 ## 2021-01-08
 
 - Added support for kafka_zookeeper_chroot.
