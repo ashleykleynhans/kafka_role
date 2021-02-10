@@ -1,3 +1,7 @@
+## 2021-02-10
+
+- Updated JMX exporter config.
+
 ## 2021-02-05
 
 - Switched mirror to Internet Solutions.
