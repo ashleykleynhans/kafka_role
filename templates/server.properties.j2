@@ -11,7 +11,9 @@
 # Alternatively, if you are running across multiple data centers, you can
 # define the IPs for the hosts in each data center as a list called
 # 'kafka_brokers' in each of the host vars.
-{% if kafka_brokers is defined %}
+{% if kafka_broker_id is defined %}
+broker.id={{ kafka_broker_id }}
+{% elif kafka_brokers is defined %}
 {% for broker_ip in kafka_brokers %}
 {% if hostvars[inventory_hostname]['ansible_default_ipv4']['address'] == broker_ip %}
 broker.id={{ loop.index }}
