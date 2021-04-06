@@ -29,6 +29,13 @@
     group: "{{ kafka_group }}"
   notify: restart kafka
 
+- name: KAFKA | Remove the meta.properties file when migrating a broker
+  ansible.builtin.file:
+    path: "{{ kafka_data_path }}/meta.properties"
+    state: absent
+  notify: restart kafka
+  when: kafka_migrate_broker
+
 - name: KAFKA | Enable GC log
   replace:
     path: "{{ kafka_install_path }}/bin/kafka-server-start.sh"

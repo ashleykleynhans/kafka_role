@@ -1,5 +1,6 @@
 ## 2021-04-06
 
+- Support for migrating a broker to a different cluster.
 - Made kafka_broker_id configurable.
 
 ## 2021-02-15
